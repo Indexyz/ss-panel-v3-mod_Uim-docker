@@ -1,0 +1,13 @@
+jobs:
+- job: Complie
+  pool:
+    name: Hosted Ubuntu 1604
+
+  steps:
+    - script: |
+        docker build -t indexyz/sspanel-uim .
+        docker login --username $(DOCKER_USERNAME) --password $(DOCKER_PASSWORD)
+        docker push
+      displayName: 'Build Docker'
+
+  timeoutInMinutes: 300
